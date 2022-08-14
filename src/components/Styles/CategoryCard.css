@@ -1,0 +1,41 @@
+.max{
+    object-fit:cover;
+    max-height: 82%;
+    width: 100%;
+}
+.contain{
+    position: relative;
+}
+
+.btn{
+    position: absolute;
+    transform: translate(-60%, -60%);
+    top: 60%;
+    left: 55%;
+   background-color: rgba(255, 255, 255, 0.623);
+    font: 11px/1 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    border: 0;
+    border-radius: 20px;
+    font-size:large;
+    letter-spacing:0.8px;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    transition: .3s;
+    cursor: pointer;
+    
+}
+
+.btn:hover{
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.zoom {
+    transition: transform .4s; /* Animation */
+  }
+  
+.zoom:hover {
+    transform: scale(1.02); 
+  }

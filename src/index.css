@@ -1,0 +1,22 @@
+@import url('http://fonts.cdnfonts.com/css/triforce');
+html {
+  font-size: 100%;
+}
+
+body {
+ 
+  margin: 0;
+  font: 300 11px/1.4 'Helvetica Neue', sans-serif;
+  color: #444;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #F1F1F1;
+  overflow-x: hidden;
+  display: block;
+
+}
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+

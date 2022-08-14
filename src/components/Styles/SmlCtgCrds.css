@@ -1,0 +1,39 @@
+.image{
+    margin: 20px;
+    max-height: 130px;
+    max-width: 150px;
+}
+
+.t2{
+    text-align: center;
+    padding-bottom: 40px;
+
+
+}
+.pop {
+    transition: transform .4s; /* Animation */
+  }
+  
+.pop:hover {
+    transform: scale(1.07); 
+  }
+  
+.ti{
+    text-align: center;
+    padding-top: 40px;
+}
+
+.caption{
+    display: flex;
+    padding-left: 60px;
+    font-size:large;
+    font-weight: 1000;
+    
+}
+
+.item{
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+}

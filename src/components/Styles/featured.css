@@ -1,0 +1,48 @@
+.featured {
+    flex:4;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-height: 200px;
+  font-size: large;
+    font-weight: bold;
+}
+.featureditems{
+    flex: 1;
+    margin: 0px 20px;
+    padding: 30px ;
+    border-radius: 10px;
+    cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+.featuredTitle{
+    font-size: 25px;
+    color: lightsteelblue;
+}
+.featuredcontainer{
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+.featuredMony{
+    font-size: 30px;
+    font-weight: 600;
+}
+.featuredMonyRate{
+    align-items: center;
+    display: flex;
+    margin-left: 50px;
+}
+.featuredIcon{
+    font-size: 14px;
+    margin-left: 5px;
+    color: green;
+}
+.featuredIcon.Nagative{
+    color: red;
+}
+.featuredsub{
+    font-size: 15px;
+    color: gray;
+}

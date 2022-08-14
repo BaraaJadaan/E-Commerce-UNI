@@ -1,0 +1,20 @@
+.fancy-2 {
+    padding:8px;
+    background:
+      radial-gradient(circle closest-side,#000 97%,#0000) center;
+    background-size:0 0;
+    background-repeat:no-repeat;
+    transition:0.5s;
+  }
+  .fancy-2:hover {  
+    background-size:300px 300px;
+    color:#fff;
+   }
+
+.grab{
+  cursor:grab;
+}
+
+.slide{
+  max-height: 90% ;
+}
