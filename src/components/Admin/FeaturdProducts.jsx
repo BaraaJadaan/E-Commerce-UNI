@@ -35,13 +35,11 @@ export default function FeaturdProducts() {
     const fetcheFeature = async () => {
       await axios.get(`${ip}/api/featured`).then(({ data }) =>
       {
-        console.log(data)
+        
         setData(data)
-        console.log("hihihihihihihihihihihihihihiMotherFoucker")
-
-      
+        
       })}
-      // console.log("hihihihihihihihihihihihihihiMotherFoucker")
+      
 
   const columns = [
     { field: "id", headerName: "ID", width: 100 },
@@ -69,7 +67,7 @@ export default function FeaturdProducts() {
         <div className="productListItem">
           {params.row.products[0].quantity}
         </div>
-        // </Link>
+      
       );
     }, },
     {
@@ -83,7 +81,7 @@ export default function FeaturdProducts() {
           <div className="productListItem">
             {params.row.products[0].price}
           </div>
-          // </Link>
+       
         );
       },
     },
@@ -98,24 +96,21 @@ export default function FeaturdProducts() {
           <div className="productListItem">
             {params.row.products[0].user_id}
           </div>
-          // </Link>
+          
         );
       },
     },
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 60,
       renderCell: (params) => {
         return (
           <>
-            
             <DeleteRoundedIcon
               className="productListDelete"
               onClick={() => handleDelete(params.row.product_id)}
             />
-            
-            
           </>
         );
       },

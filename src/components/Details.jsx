@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import NavBar from "./NavBar";
 import Rating from "@mui/material/Rating";
 import Tooltip from "@mui/material/Tooltip";
 import Container from "@mui/material/Container";
@@ -19,23 +18,18 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PaidRoundedIcon from '@mui/icons-material/PaidRounded';
 import Divider from '@mui/material/Divider';
 import Backdrop from '@mui/material/Backdrop';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Snackbar from '@mui/material/Snackbar';
-import MuiAlert, { AlertProps } from '@mui/material/Alert';
+import MuiAlert from '@mui/material/Alert';
 import AuthContext   from "../hooks/AuthProvider";
 import axios from "axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import { mobile } from "../Responsive";
-// import AuthContext   from "../hooks/AuthProvider";
-// import { useContext } from "react";
+
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
   min-height: 100vh;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -46,13 +40,11 @@ const Image = styled.img`
   max-height: 100%;
     max-width: 100%;
     transform: translate(-50px, 0px);
-  ${mobile({ height: "40vh" })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0px 50px;
-  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -98,7 +90,6 @@ const FilterContainer = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
 `;
 
 const Date = styled.p`
@@ -113,15 +104,12 @@ const WrapperIcons = styled.div`
     bottom: 3.5px;
 `
 const Product = () => {
-  const {search,ip} = useContext(AuthContext)
-
+  const {ip} = useContext(AuthContext)
   const [open, setOpen] = useState(false);
   const [openSnack, setOpenSnack] = useState(false);
   const [openSnack2, setOpenSnack2] = useState(false);
   const [openBackdrop, setOpenBackdrop] = useState(true)
-  // const [rating, setRating] = useState("");
   const [openReview, setOpenReview] = useState(false)
-  const [value, setValues] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -132,16 +120,10 @@ const Product = () => {
   const [Id, setId] = useState('')
   const [user_id, setUser_id] = useState('')
   const [created_at, setCreated_at] = useState('')
-  const [updated_at, setUpdated_at] = useState('')
-  const {rating,setRating} = useContext(AuthContext)
   const [newStar, setNewStar] = useState("")
   const [comment, setComment] = useState('')
   const [avatar, setAvatar] = useState(null);
   const [sellerName, setSellerName] = useState("");
-  const [commentUserName, setCommentUserName] = useState('')
-  const [commentUserId, setCommentUserId] = useState('')
-  const [commentUserImg, setCommentUserImg] = useState('')
-  const [commentUserRating, setCommentUserRating] = useState('')
   const [reviews, setReviews] = useState([])
   const [userType, setUserType] = useState('')
   const [accessToken, setAccessToken] = useState("")
@@ -149,8 +131,6 @@ const Product = () => {
   const [userName, setUserName] = useState("")
   const [isPending, setIsPending] = useState(false)
   const [Avg, setAvg] = useState()
-  const [message, setMessage] = useState('')
-  const [data, setData] = useState({})
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
@@ -165,14 +145,14 @@ const Product = () => {
   if(data1!==null){setAccessToken(data1)}
   if(data2!==null){setUserID(data2)}
   if(data3!==null){setUserName(data3)}
-  })
+  },[])
 
 
   const fetchAll = async () => {
     await axios
       .get(`${ip}/api/products/${id}/reviews`,{ headers: {"Authorization" :` Bearer ${localStorage.getItem('accessToken')}`} })
       .then(({ data }) => {
-        const {name, description, price, image_url, quantity, reviews, created_at, updated_at, user_id, id, user, product, review_avg} = data;
+        const {product, review_avg} = data;
         setImage(product.image_url);
         setName(product.name);
         setDescription(product.description);
@@ -180,7 +160,6 @@ const Product = () => {
         setQuantity(product.quantity);
         setAvg(review_avg);
         setCreated_at(product.created_at);
-        setUpdated_at(product.updated_at);
         setUser_id(product.user_id)
         setId(product.id)
         setUserType(product.user.user_type)
@@ -197,7 +176,7 @@ const Product = () => {
 
   useEffect(() => {
     fetchAll();
-  }, []);
+  });
 
 
   const changeHandler = (e) => {

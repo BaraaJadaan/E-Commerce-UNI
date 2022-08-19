@@ -1,11 +1,10 @@
 import "../Styles/AllUsers.css";
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';import VolunteerActivismRoundedIcon from '@mui/icons-material/VolunteerActivismRounded';
-import { userRows } from "./data";
+import VolunteerActivismRoundedIcon from '@mui/icons-material/VolunteerActivismRounded';
 import { Link } from "react-router-dom";
 import { forwardRef, useEffect, useState } from "react";
 import axios from "axios";
-import { Tooltip } from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import AuthContext   from "../../hooks/AuthProvider";
@@ -72,7 +71,8 @@ export default function Loyalty() {
           <Link to={`/MyProfile/${params.row.id}`}>
 
           <div className="userListUser">
-            <img className="userListImg" src={`${ip}/storage/profile_images/${params.row.profile_photo} `} alt="" />
+            <Avatar className="userListImg" src={`${ip}/storage/profile_images/${params.row.profile_photo} `} 
+            alt={params.row.name} />
             {params.row.name}
           </div>
           </Link>
@@ -85,27 +85,23 @@ export default function Loyalty() {
       headerName: "Products Count",
       width: 120,
     },
-    {
-      field: "phone_number",
-      headerName: "Phone Number",
-      width: 160,
-    },
+
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 60,
       renderCell: (params) => {
         return (
           <>
            
            
-                         <Tooltip title="Give him prize">
+            <Tooltip title="Give him prize">
 
              <VolunteerActivismRoundedIcon
               className="userListPrize"
               onClick={() => handleLoylty(params.row.id)}
-            />
-             </Tooltip>
+              />
+            </Tooltip>
           </>
         );
       },

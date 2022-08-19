@@ -14,9 +14,6 @@ export default function WigetProducts() {
       await axios.get(`${ip}/api/admin/lastproduct`,
       { headers: {"Authorization" : `Bearer ${localStorage.getItem('accessToken')}`} }).then(({ data }) =>
       {
-
-        //  console.log(data)
-        // setProducts(data.data)}
         setData(data)
       })}
   return (
@@ -24,7 +21,7 @@ export default function WigetProducts() {
       <h3 className="widgetLgTitle">Newest Products</h3>
       <table className="widgetLgTable">
         <tr className="widgetLgTr">
-          <th className="widgetLgTh">Customer</th>
+          <th className="widgetLgTh">Product</th>
           <th className="widgetLgTh">Date</th>
           <th className="widgetLgTh">Price</th>
           <th className="widgetLgTh">Quantity</th>
@@ -34,7 +31,6 @@ export default function WigetProducts() {
           <td className="widgetLgUser">
             <img
                src={`${ip}/storage/product_images/${item.image_url} `}
-              // src=""
               alt=""
               className="widgetLgImg"
             />
@@ -44,7 +40,6 @@ export default function WigetProducts() {
           <td className="widgetLgAmount">{item.price}</td>
           <td className="widgetLgStatus">
           {item.quantity}
-            {/* <Button type="Approved" /> */}
           </td>
         </tr>
         ))}

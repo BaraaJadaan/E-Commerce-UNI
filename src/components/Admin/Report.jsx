@@ -5,21 +5,20 @@ import PersonRemoveRoundedIcon from '@mui/icons-material/PersonRemoveRounded';im
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Tooltip } from "@mui/material";
+import { Avatar, Tooltip } from "@mui/material";
 import AuthContext   from "../../hooks/AuthProvider";
 import { useContext } from "react";
+
 export default function Report() {
   const [data, setData] = useState([]);
   const {search,ip} = useContext(AuthContext)
 
   const handleDeleteProducts = async (id) => {
-    // console.log(.user_type);
-    // setData(data.filter((item) => (item.id !== id&&item.user_type !== type)));
     await axios
     .delete(`${ip}/api/admin/products/${id}`,{ headers: {"Authorization" : `Bearer ${localStorage.getItem('accessToken')}`} }
 
     ).then(({data})=>{
-        // console.log(data)
+ 
         window.location.reload()
 
     }).catch(({ response }) => {
@@ -27,13 +26,12 @@ export default function Report() {
     })
   };
   const handleDeleteUsers = async(id) => {
-    // console.log(.user_type);
-    // setData(data.filter((item) => (item.id !== id&&item.user_type !== type)));
+
     await axios
     .delete(`${ip}/api/admin/users/${id}`,{ headers: {"Authorization" : `Bearer ${localStorage.getItem('accessToken')}`} }
 
     ).then(({data})=>{
-        // console.log(data)
+        
         window.location.reload()
 
     }).catch(({ response }) => {
@@ -53,7 +51,7 @@ export default function Report() {
       })
       .then(({ data }) => {
         console.log(data);
-        // setProducts(data.data)}
+   
         setData(data);
       });
   };
@@ -63,16 +61,16 @@ export default function Report() {
 
     {
       field: "user",
-      headerName: "User whos report",
+      headerName: "User Reported",
       width: 250,
       renderCell: (params) => {
         return (
           <Link to={`/MyProfile/${params.row.user.id}`}>
             <div className="userListUser">
-              <img
+              <Avatar
                 className="userListImg"
                 src={`${ip}/storage/profile_images/${params.row.user.profile_photo} `}
-                alt=""
+                alt={params.row.user.name}
               />
               {params.row.user.name}
             </div>
@@ -82,7 +80,7 @@ export default function Report() {
     },
     {
       field: "products",
-      headerName: "Offending Products",
+      headerName: "Reported Product",
       width: 250,
       renderCell: (params) => {
         return (
@@ -106,7 +104,6 @@ export default function Report() {
       renderCell: (params) => {
         return (
           <div className="div">
-            {/* // <img className="userListImg" src={`${ip}/storage/product_images/${params.row.product.image_url} `} alt="" /> */}
             {params.row.product.category_id}
           </div>
         );
@@ -116,7 +113,7 @@ export default function Report() {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 100,
       renderCell: (params) => {
         return (
           <>

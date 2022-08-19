@@ -20,14 +20,12 @@ export default function AllProducts() {
   const {search,ip} = useContext(AuthContext)
 
   const handleDelete = async(id) => {
-    // e.preventDefault();
     setData(data.filter((item) => item.id !== id));
     
     await axios
     .delete(`${ip}/api/admin/products/${id}`,{ headers: {"Authorization" : `Bearer ${localStorage.getItem('accessToken')}`} }
 
     ).then(({data})=>{
-        // console.log(data)
         window.location.reload()
 
     }).catch(({ response }) => {
@@ -35,13 +33,8 @@ export default function AllProducts() {
     })
   };
   const handleFeatured = async(id)=>{
-    // event.preventDefault();
     const formData = new FormData();
-    // formData.append('_method', 'PATCH')
-
     formData.append('product_id', id)
-    // formData.append('quantity', 1)
-    // formData.append('product_id', )
     await axios
     .post(`${ip}/api/featured`,formData, {
       headers: {
@@ -63,9 +56,6 @@ export default function AllProducts() {
       await axios.get(`${ip}/api/admin/productsAll`,
       { headers: {"Authorization" : `Bearer ${localStorage.getItem('accessToken')}`} }).then(({ data }) =>
       {
-
-        //  console.log(data)
-        // setProducts(data.data)}
         setData(data)
       })}
       const handleClose = (event, reason) => {
@@ -107,7 +97,7 @@ export default function AllProducts() {
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 100,
       renderCell: (params) => {
         return (
           <>

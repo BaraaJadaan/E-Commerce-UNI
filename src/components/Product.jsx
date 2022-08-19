@@ -1,17 +1,15 @@
 import styled from "styled-components";
 import "./Styles/Product.css";
 import Rating from "@mui/material/Rating";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useState } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 import { ShoppingCartCheckoutOutlined } from "@mui/icons-material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { popularProducts } from "./data";
 import { Link } from "react-router-dom";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { makeStyles } from "@material-ui/core/styles";
-import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
 import { teal } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -32,30 +30,28 @@ const Info = styled.div`
   transition: all 0.5s ease;
   display: flex;
   justify-content: space-between;
-  padding:10px;
-
 `;
 
-const WishIcon = styled.div `
+const WishIcon = styled.div`
   width: 40px;
   height: 40px;
   opacity: 0;
   z-index: 9;
   position: absolute;
-  top: 8px;
-  left: 8px;
-  color: gray;
-  cursor: pointer;
+  top:8px;
+  left:8px;
+  color:gray;
+  cursor:pointer;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.5s ease;
-  &:hover {
+  &:hover{
     background-color: #e9f5f5;
     transform: scale(1.05);
   }
-`;
+ `;
 
 const Container = styled.div`
   &:hover ${Info} {
@@ -72,21 +68,11 @@ const Container = styled.div`
 const WrappName = styled.div`
   display: flex;
   flex-direction: column;
-  font-size:large;
-  font-weight:bold;
 `;
 const Name = styled.span`
-  font-weight: 300;
-  font-size: 25px;
+  font-weight: 900;
+  font-size: 20px;
   margin-left: 6px;
-`;
-const Price = styled.span`
-  font-weight: 500;
-  font-size: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
 `;
 const RatingStyle = styled.div`
   display: flex;
@@ -114,6 +100,14 @@ const Icon = styled.div`
     transform: scale(1.1);
   }
 `;
+const Price = styled.span`
+  font-weight: 500;
+  font-size: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+`;
 function TransitionDown(props) {
   return <Slide {...props} direction="down" />;
 }
@@ -123,9 +117,6 @@ const Alert = forwardRef(function Alert(props, ref) {
 const useStyles = makeStyles((theme) => ({
   snackbar: {
     width: "100%",
-
-    // marginRight: '100px'
-    //  height: '20%',
   },
 }));
 
@@ -135,9 +126,6 @@ const Product = ({ item, onAdd, onAddWish }) => {
   const [value, setValue] = useState(2);
   const [open, setOpen] = useState(false);
   const [transition, setTransition] = useState(undefined);
-  const [cartKey, setCartKey] = useState("");
-  // const [accessToken, setAccessToken] = useState("")
-
   const classes = useStyles();
   const handleClick = (Transition) => () => {
     setTransition(() => Transition);
@@ -155,12 +143,9 @@ const Product = ({ item, onAdd, onAddWish }) => {
   const addToCart = async (e) => {
     e.preventDefault();
 
-        const formData = new FormData();
-      // formData.append('_method', 'PATCH')
-  
+      const formData = new FormData();
       formData.append('cartKey', localStorage.getItem('cartKey'))
       formData.append('quantity', 1)
-      // formData.append('product_id', )
       await axios
       .post(`${ip}/api/cart/products/${item.id}`, formData, {
         headers: {
@@ -176,11 +161,7 @@ const Product = ({ item, onAdd, onAddWish }) => {
   const addToWishList = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    // formData.append('_method', 'PATCH')
-
     formData.append('product_id', `${item.id}`)
-    // formData.append('quantity', 1)
-    // formData.append('product_id', )
     await axios
     .post(`${ip}/api/wishlist`,formData, {
       headers: {
@@ -193,7 +174,7 @@ const Product = ({ item, onAdd, onAddWish }) => {
     })
   
   }
-  // console.log(cartKey);
+ 
   return (  
     <ThemeProvider theme={theme}>
       <Container>
@@ -215,6 +196,7 @@ const Product = ({ item, onAdd, onAddWish }) => {
               <img
                 className="img"
                 src={`${ip}/storage/product_images/${item.image_url}`}
+                alt=""
               />
               </Link>
             </div>
